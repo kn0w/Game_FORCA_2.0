@@ -5,11 +5,12 @@ import img.imgControl;
 public class compNome extends gameForca{
 	private String letra;
 	private static String nomeForca;
+	static int imgNum = 0;
 	public static void comparaPalavra(String letra) throws Exception{
 		System.out.println("A Letra precionada "+letra);
 		int cont=0;
 		boolean valida = false;
-		int imgNum=0;
+		
 		char[] cha=nomeForca.toCharArray();
 		do{
 			System.out.println(cha[cont]);
@@ -31,7 +32,7 @@ public class compNome extends gameForca{
 		}else if(valida==true){
 			gameForca.setBt(true);
 		}
-		System.out.println("  O resultado da Comparação é: "+getNomeForca());
+		//System.out.println("  O resultado da Comparação é: "+getNomeForca());
 	}
 	public String getNome() {
 		return letra;
@@ -46,7 +47,7 @@ public class compNome extends gameForca{
 		for(int i = 0;i<nomeForca.length();i++){
 			contador++;
 		}gameForca.setNumeroLetras(contador);
-		System.out.println("Palavra Gerada "+palavra);
+		//System.out.println("Palavra Gerada "+palavra);
 	}
 	public static String getNomeForca() {
 		return nomeForca;
@@ -54,4 +55,5 @@ public class compNome extends gameForca{
 	public static void setNomeForca(String nomeForca) {
 		compNome.nomeForca = nomeForca;
 	}
+	
 }
