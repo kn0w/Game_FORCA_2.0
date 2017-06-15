@@ -1,35 +1,32 @@
 package com.coddeveloper.JogoForca;
 
-import java.awt.Component;
-import java.awt.Label;
-
-import javax.swing.JLabel;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+import img.imgControl;
 
 public class compNome extends gameForca{
 	private String letra;
 	private static String nomeForca;
-	public void comparaPalavra(String letra){
+	public static void comparaPalavra(String letra) throws Exception{
 		System.out.println("A Letra precionada "+letra);
 		int cont=0;
 		boolean valida = false;
+		int imgNum=0;
 		char[] cha=nomeForca.toCharArray();
-		gameForca gm;
 		do{
 			System.out.println(cha[cont]);
 			if(letra.charAt(0)==cha[cont]){
 				System.out.println("Encontrado esta Letra...> ");
 				valida=true;
-				label[cont] = new JLabel("");
-				label[cont].setText(letra);
-				label[cont].repaint();
+				setLabel(cont, letra);
 			}
 			cont++;
-		}while(cont<nomeForca.length());
+		}while(cont<getNumeroLetras());
 		System.out.println(valida);
 		if(valida==false){
+			imgNum++;
 			System.out.println("Confirmando que o Botão esta false");
+			System.out.println("Contando Imagem ICO: "+imgNum);
+			imgControl.imgControl(imgNum);
+			System.out.println("Voltou metodo Injeta IMG ");
 			gameForca.setBt(false);
 		}else if(valida==true){
 			gameForca.setBt(true);
@@ -51,7 +48,7 @@ public class compNome extends gameForca{
 		}gameForca.setNumeroLetras(contador);
 		System.out.println("Palavra Gerada "+palavra);
 	}
-	public String getNomeForca() {
+	public static String getNomeForca() {
 		return nomeForca;
 	}
 	public static void setNomeForca(String nomeForca) {
