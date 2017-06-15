@@ -11,13 +11,14 @@ BufferedImage imgControl = new BufferedImage(148, 341, BufferedImage.TYPE_INT_AR
 
 public static void imgControl(int imgNumer) throws Exception {
 System.out.println("dentro Metodo IMG -- ok  numero: "+imgNumer);
+
 String[] img = new String[7];
-img[1]="../img/01.png";
-//img[2]="/img/02.png";
-//img[3]="/img/03.png";
-//img[4]="/img/04.png";
-//img[5]="/img/05.png";
-//img[6]="/img/06.png";
+img[1]="/img/01.png";
+img[2]="/img/02.png";
+img[3]="/img/03.png";
+img[4]="/img/04.png";
+img[5]="/img/05.png";
+img[6]="/img/06.png";
 //img[7]="/img/07.png";
 System.out.println("pASSOU DO aRRAY sTRING IMG");
 if(img[imgNumer].equals(null)){
