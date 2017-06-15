@@ -2,19 +2,13 @@ package com.coddeveloper.JogoForca;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,18 +18,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.net.URL;
-import java.awt.event.InputMethodEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class gameForca extends JFrame {
 public static boolean bt;
@@ -48,10 +33,6 @@ public static boolean bt;
 	private static JPanel pn_Forca = new JPanel();
 	private static JLabel lbl_ico = new JLabel("");
 
-	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,9 +53,6 @@ public static boolean bt;
 			}
 		});
 	}
-	/**
-	 * Create the frame.
-	 */
 	public gameForca() {
 		setTitle("JOGO -------- DA -------- FORCA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +60,6 @@ public static boolean bt;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(7, 7,7, 7));
 		setContentPane(contentPane);
-		
 		JButton btnA = new JButton("A"); // Botton A
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -101,7 +78,6 @@ public static boolean bt;
 				}
 			}});
 		btnA.setForeground(new Color(148, 0, 211));
-		
 		JButton btnB = new JButton("B");
 		btnB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -231,7 +207,6 @@ public static boolean bt;
 			}});
 		btnH.setForeground(new Color(148, 0, 211));
 		btnH.setFont(new Font("Dialog", Font.BOLD, 11));
-		
 		JButton btnI = new JButton("I");
 		btnI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,7 +226,6 @@ public static boolean bt;
 			}});
 		btnI.setForeground(new Color(148, 0, 211));
 		btnI.setFont(new Font("Dialog", Font.BOLD, 11));
-		
 		JButton btnJ = new JButton("J");
 		btnJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -270,7 +244,6 @@ public static boolean bt;
 				}
 			}});
 		btnJ.setForeground(new Color(148, 0, 211));
-		
 		JButton btnK = new JButton("K");
 		btnK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -289,7 +262,6 @@ public static boolean bt;
 				}
 			}});
 		btnK.setForeground(new Color(148, 0, 211));
-		
 		JButton btnL = new JButton("L");
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -308,7 +280,6 @@ public static boolean bt;
 				}
 			}});
 		btnL.setForeground(new Color(148, 0, 211));
-		
 		JButton btnM = new JButton("M");
 		btnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -328,7 +299,6 @@ public static boolean bt;
 			}});
 		btnM.setForeground(new Color(148, 0, 211));
 		btnM.setFont(new Font("Dialog", Font.BOLD, 10));
-		
 		JButton btnn = new JButton("N");
 		btnn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -348,7 +318,6 @@ public static boolean bt;
 			}});
 		btnn.setForeground(new Color(148, 0, 211));
 		btnn.setFont(new Font("Dialog", Font.BOLD, 11));
-		
 		JButton btnO = new JButton("O");
 		btnO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -368,7 +337,6 @@ public static boolean bt;
 			}});
 		btnO.setForeground(new Color(148, 0, 211));
 		btnO.setFont(new Font("Dialog", Font.BOLD, 10));
-		
 		JButton btnP = new JButton("P");
 		btnP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -387,7 +355,6 @@ public static boolean bt;
 				}
 			}});
 		btnP.setForeground(new Color(148, 0, 211));
-		
 		JButton btnQ = new JButton("Q");
 		btnQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -407,7 +374,6 @@ public static boolean bt;
 			}});
 		btnQ.setForeground(new Color(148, 0, 211));
 		btnQ.setFont(new Font("Dialog", Font.BOLD, 10));
-		
 		JButton btnR = new JButton("R");
 		btnR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -426,7 +392,6 @@ public static boolean bt;
 				}
 			}});
 		btnR.setForeground(new Color(148, 0, 211));
-		
 		JButton btnS = new JButton("S");
 		btnS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -445,7 +410,6 @@ public static boolean bt;
 				}
 			}});
 		btnS.setForeground(new Color(148, 0, 211));
-		
 		JButton btnT = new JButton("T");
 		btnT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -464,7 +428,6 @@ public static boolean bt;
 				}
 			}});
 		btnT.setForeground(new Color(148, 0, 211));
-		
 		JButton btnU = new JButton("U");
 		btnU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -484,7 +447,6 @@ public static boolean bt;
 			}});
 		btnU.setForeground(new Color(148, 0, 211));
 		btnU.setFont(new Font("Dialog", Font.BOLD, 11));
-		
 		JButton btnV = new JButton("V");
 		btnV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -503,7 +465,6 @@ public static boolean bt;
 				}
 			}});
 		btnV.setForeground(new Color(148, 0, 211));
-		
 		JButton btnW = new JButton("W");
 		btnW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -523,7 +484,6 @@ public static boolean bt;
 			}});
 		btnW.setForeground(new Color(148, 0, 211));
 		btnW.setFont(new Font("Dialog", Font.BOLD, 9));
-		
 		JButton btnX = new JButton("X");
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -542,7 +502,6 @@ public static boolean bt;
 				}
 			}});
 		btnX.setForeground(new Color(148, 0, 211));
-		
 		JButton btnY = new JButton("Y");
 		btnY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -561,13 +520,12 @@ public static boolean bt;
 				}
 			}});
 		btnY.setForeground(new Color(148, 0, 211));
-
 		pn_Palavra.setBorder(new LineBorder(new Color(0, 128, 0), 2));
 		pn_Palavra.setForeground(new Color(51, 51, 51));
 		JLabel lblNewLabel = new JLabel("ADIVINHE A PALAVRA:");
-		
+
 		JLabel lblPauloHA = new JLabel("Paulo H A Moreia®");
-		
+
 		JLabel lbl_Relogio = new JLabel("");
 		lbl_Relogio.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent arg0) {
@@ -593,7 +551,7 @@ public static boolean bt;
 			@Override
 			public void ancestorRemoved(AncestorEvent arg0) {
 		}});
-		
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -724,18 +682,15 @@ public static boolean bt;
 					.addComponent(lblPauloHA, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		
 		JLabel label_3 = new JLabel("|");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 98));
-		
+
 		JLabel label_4 = new JLabel("|");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 98));
-		
-		
-		
+
 		JLabel label_1 = new JLabel("|");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 98));
-		
+
 		JLabel label_5 = new JLabel("|");
 		label_5.setFont(new Font("Dialog", Font.BOLD, 98));
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -771,18 +726,20 @@ public static boolean bt;
 		
 		GroupLayout gl_pn_Forca = new GroupLayout(pn_Forca);
 		gl_pn_Forca.setHorizontalGroup(
-			gl_pn_Forca.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pn_Forca.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lbl_ico, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+			gl_pn_Forca.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_pn_Forca.createSequentialGroup()
+					.addGap(80)
+					.addComponent(lbl_ico, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(44, Short.MAX_VALUE))
 		);
 		gl_pn_Forca.setVerticalGroup(
 			gl_pn_Forca.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pn_Forca.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lbl_ico, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+					.addContainerGap()
+					.addComponent(lbl_ico, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
 					.addContainerGap())
 		);
+		
 		pn_Forca.setLayout(gl_pn_Forca);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
@@ -829,8 +786,7 @@ public static void geraLetrasPN_Palavra() throws Exception{
 	}
 	public static String imG(String ox) throws Exception{
 	System.out.println("Chegou no metodo imG "+ox);
-	
-	
+	lbl_ico.setIcon(new ImageIcon(gameForca.class.getResource(ox)));
 	return ox;
 	}
 }
