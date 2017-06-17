@@ -3,8 +3,13 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.text.BreakIterator;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.GroupLayout;
@@ -21,9 +26,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Toolkit;
+import java.awt.Window;
 
 public class gameForca extends JFrame {
-public static boolean bt;
+	public static boolean bt;
 	public JPanel contentPane;
 	private static JLabel[] label;
 	public static int numeroLetras;
@@ -32,28 +39,44 @@ public static boolean bt;
 	private static JPanel panel = new JPanel();
 	private static JPanel pn_Forca = new JPanel();
 	private static JLabel lbl_ico = new JLabel("");
-
+	private static boolean over;
+private static boolean vitoriA;
+private static JFrame frame;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				compNome cpN = new compNome();
-				cpN.geraPalavra();
-				try {
-					geraLetrasPN_Palavra();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				
+				System.out.println("Verificando estado de GameOver: "+over);
+				System.out.println("Metodo rum  --- ok");
+				if(over==true){
+					System.out.println("Metodo rum equals game over true --- ok");
+					gameForca.limpar();	
+					System.out.println("Voltou de Limpar -- ok ");
+				}else if(vitoriA=true){
+					System.out.println("Detectou Vitoria ...."+isVitoriA());
+					gameForca.limpar();
 				}
-				try {
-					gameForca frame = new gameForca();
-					frame.setVisible(true);
+				TelaGameOver.main(null);
+				/*try {
+				TelaGameOver iniciar = new TelaGameOver();
+				iniciar.main(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				*/
 			}
-		});
+		});}
+	public void winodwsIN(WindowEvent ev){
+		compNome.geraPalavra();
+		geraLetrasPN_Palavra();
+		gameForca();
 	}
-	public gameForca() {
+	public void gameForca(){
+		
+		System.out.println("Incio JFrame Game Forca- Janela do Game -- ok");
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(gameForca.class.getResource("/img/06.png")));
 		setTitle("JOGO -------- DA -------- FORCA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 947, 606);
@@ -523,9 +546,7 @@ public static boolean bt;
 		pn_Palavra.setBorder(new LineBorder(new Color(0, 128, 0), 2));
 		pn_Palavra.setForeground(new Color(51, 51, 51));
 		JLabel lblNewLabel = new JLabel("ADIVINHE A PALAVRA:");
-
 		JLabel lblPauloHA = new JLabel("Paulo H A Moreia®");
-
 		JLabel lbl_Relogio = new JLabel("");
 		lbl_Relogio.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent arg0) {
@@ -551,7 +572,6 @@ public static boolean bt;
 			@Override
 			public void ancestorRemoved(AncestorEvent arg0) {
 		}});
-
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -722,8 +742,6 @@ public static boolean bt;
 						.addComponent(pn_Forca, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		
-		
 		GroupLayout gl_pn_Forca = new GroupLayout(pn_Forca);
 		gl_pn_Forca.setHorizontalGroup(
 			gl_pn_Forca.createParallelGroup(Alignment.TRAILING)
@@ -739,19 +757,39 @@ public static boolean bt;
 					.addComponent(lbl_ico, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		
 		pn_Forca.setLayout(gl_pn_Forca);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+		System.out.println("Fim procedimento Criar JFrame GameForca... ok ");
+		
 	}
-public static void geraLetrasPN_Palavra() throws Exception{
+private static void limpar() {
+		System.out.println("dentro metodo limpar --- ok ");
+		int cont = getNumeroLetras();
+		System.out.println("Metodo letra get " + getNumeroLetras());
+		if(getNumeroLetras()!=0){
+		for (int i = 0; i < label.length; i++) {
+			System.out.println("dentro do IF " + i);
+			label[i].setText(null);
+			System.out.println("dentro do IF " + i);
+			cont--;
+		}}
+		//label[label.length].removeAll();
+		setNumeroLetras(cont);
+		pn_Palavra.repaint();
+		pn_Palavra.revalidate();
+		lbl_ico.setIcon(null);
+		System.out.println("Dentro metodo gameForca Repaint --- ok");
+		//gameForca.main(null);
+		//TelaGameOver.main(null);
+	}
+public static void geraLetrasPN_Palavra(){
 	int cont=0;
 	label = new JLabel[getNumeroLetras()];
-	lbl_dica.setText("Dica A Palavra tem: "+getNumeroLetras()+" Letras...");
 	for(int i = 0;i<getNumeroLetras();i++){
 		label[i] = new JLabel();
 		label[i].setText("_");
-		System.out.println(label[i]);
+		System.out.println("Label na posição: "+label[i]);
 		label[i].setHorizontalAlignment(SwingConstants.RIGHT);
 		label[i].setFont(new Font("Dialog", Font.BOLD, 38));
 		pn_Palavra.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{label[i]}));
@@ -760,7 +798,7 @@ public static void geraLetrasPN_Palavra() throws Exception{
 		cont++;
 		if(cont>=getNumeroLetras()){
 			System.out.println("Dica A Palavra Tem :"+i);
-			lbl_dica.setText("A Palavra tem "+cont+" Letras.. Boa Sorte!");
+			lbl_dica.setText("Dica esta Palavra Contem "+cont+" Letras!! Boa Sorte...");
 		}
 	}
 	System.out.println("Numero letras "+getNumeroLetras());
@@ -784,9 +822,29 @@ public static void geraLetrasPN_Palavra() throws Exception{
 		System.out.println("label"+label[num]+" num "+num+" String "+text);
 	    label[num].setText(text);
 	}
+
 	public static String imG(String ox) throws Exception{
 	System.out.println("Chegou no metodo imG "+ox);
 	lbl_ico.setIcon(new ImageIcon(gameForca.class.getResource(ox)));
 	return ox;
 	}
+	public static boolean gameOver(boolean over){
+		System.out.println("Gravando true ame over");
+		
+				return gameForca.over = over;
+	}
+	public static boolean isOver() {
+		return over;
+	}
+	public static void setOver(boolean over) {
+		gameForca.over = over;
+	}
+	public static boolean isVitoriA() {
+		return vitoriA;
+	}
+	public static void setVitoriA(boolean vitoriA) {
+		
+		gameForca.vitoriA = vitoriA;
+	}
+	
 }
