@@ -1,9 +1,11 @@
 package com.coddeveloper.JogoForca;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,33 +13,33 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 public class TelaGameOver extends JFrame {
-	private JPanel contentPane;
-	private JTextField txt;
-	private JPanel painel;
-	private ImageIcon img;
-	private JLabel imagem;
+	private JPanel contentPane = new JPanel(new BorderLayout());
 	private static JLabel lblOuver = new JLabel();
 	private static JLabel lblGame = new JLabel();
 	private static String planoFundo = "/img/011.jpg";
 	private static boolean iniCialiZacao;
-private static boolean gameOveR;
-private static boolean ganhoU;
+	private static boolean gameOveR;
+	private static boolean ganhoU;
+	int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+	int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+	private static Image img;
+	private Graphics raphics ;
+	
 	public static void main(String[] args) {
+		
 		setIniCialiZacao(true);
-		if (TelaGameOver.isGanhoU()==true) {
+		if (TelaGameOver.isGanhoU() == true) {
 			setIniCialiZacao(false);
 			lblOuver.setText("Obaa... Você Ganhou");
 			lblGame.setText("Mesu Parabensss....>!!<" + "\n" + "De mais..");
-		} else if (TelaGameOver.isGameOveR()==true) {
+		} else if (TelaGameOver.isGameOveR() == true) {
 			setIniCialiZacao(false);
 			lblOuver.setText("GAME");
 			lblGame.setText("OVER..> !!");
@@ -47,8 +49,8 @@ private static boolean ganhoU;
 				try {
 
 					TelaGameOver frame = new TelaGameOver();
-					frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-					frame.setLocationRelativeTo(null);
+					//frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+					//frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,6 +58,12 @@ private static boolean ganhoU;
 			}
 		});}
 	public TelaGameOver() {
+		Graphics g = null;
+		 try{
+		      img = javax.imageio.ImageIO.read(new java.net.URL(getClass().getResource(planoFundo), planoFundo));
+		    }
+		    catch (Exception e) { /*handled in paintComponent()*/ 
+		    }
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setResizable(false);
@@ -64,13 +72,16 @@ private static boolean ganhoU;
 		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaGameOver.class.getResource("/img/06.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100,100,100,100);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(51, 51, 51));
-		contentPane.setBackground(new Color(0, 0, 0));
-		setContentPane(contentPane);
-		this.setSize(this.getWidth(), this.getHeight());
-		this.getInsets();
+		contentPane.setBackground(new Color(0, 0, 0));  
+	    contentPane.setOpaque(true); 
+	    setContentPane(contentPane);
+	    setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setSize(this.getWidth(), this.getHeight());
+		getInsets();
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
 		JPanel panel_1 = new JPanel();
@@ -78,6 +89,8 @@ private static boolean ganhoU;
 		panel_1.setFocusTraversalPolicy(null);
 		panel_1.requestFocus();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setAutoCreateContainerGaps(true);
+		gl_contentPane.setAutoCreateGaps(true);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup().addGap(27)
 						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE).addGap(38))
@@ -88,7 +101,7 @@ private static boolean ganhoU;
 						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 41, Short.MAX_VALUE).addGap(101)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE).addGap(23)));
 
-		if (this.isIniCialiZacao() == true) {
+		if (TelaGameOver.isIniCialiZacao() == true) {
 			lblGame.setText("Game da F0rcA");
 			lblOuver.setText("BEM VINDO ....");
 		}
@@ -140,5 +153,10 @@ private static boolean ganhoU;
 	public static void setGanhoU(boolean ganhoU) {
 		TelaGameOver.ganhoU = ganhoU;
 	}
-	
+	public static String getPlanoFundo() {
+		return planoFundo;
+	}
+	public static void setPlanoFundo(String planoFundo) {
+		TelaGameOver.planoFundo = planoFundo;
+	}
 }
