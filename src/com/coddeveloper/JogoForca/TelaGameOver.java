@@ -29,14 +29,15 @@ public class TelaGameOver extends JFrame {
 	private static JLabel lblGame = new JLabel();
 	private static String planoFundo = "/img/011.jpg";
 	private static boolean iniCialiZacao;
-
+private static boolean gameOveR;
+private static boolean ganhoU;
 	public static void main(String[] args) {
 		setIniCialiZacao(true);
-		if (gameForca.isVitoriA() == true) {
+		if (TelaGameOver.isGanhoU()==true) {
 			setIniCialiZacao(false);
 			lblOuver.setText("Obaa... Você Ganhou");
 			lblGame.setText("Mesu Parabensss....>!!<" + "\n" + "De mais..");
-		} else if (gameForca.isOver() == true) {
+		} else if (TelaGameOver.isGameOveR()==true) {
 			setIniCialiZacao(false);
 			lblOuver.setText("GAME");
 			lblGame.setText("OVER..> !!");
@@ -72,7 +73,6 @@ public class TelaGameOver extends JFrame {
 		this.getInsets();
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 0, 0));
 		panel_1.setFocusTraversalPolicy(null);
@@ -104,7 +104,7 @@ public class TelaGameOver extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					gameForca frame = new gameForca();
-					frame.setOver(true);
+					//frame.setOver(true);
 					gameForca init = new gameForca();
 					init.winodwsIN(null);
 					dispose();
@@ -128,4 +128,17 @@ public class TelaGameOver extends JFrame {
 	public static void setIniCialiZacao(boolean iniCialiZacao) {
 		TelaGameOver.iniCialiZacao = iniCialiZacao;
 	}
+	public static boolean isGameOveR() {
+		return gameOveR;
+	}
+	public static void setGameOveR(boolean gameOveR) {
+		TelaGameOver.gameOveR = gameOveR;
+	}
+	public static boolean isGanhoU() {
+		return ganhoU;
+	}
+	public static void setGanhoU(boolean ganhoU) {
+		TelaGameOver.ganhoU = ganhoU;
+	}
+	
 }

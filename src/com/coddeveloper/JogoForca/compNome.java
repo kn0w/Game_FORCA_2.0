@@ -10,35 +10,35 @@ public class compNome extends gameForca {
 		boolean validaButton = false;
 		char[] chaNomeForca = nomeForca.toCharArray();
 		do {
-
 			if (letra.charAt(0) == chaNomeForca[cont]) {
 				validaButton = true;
 				vitoria++;
 				setLabel(cont, letra);
-			}
-			cont++;
-		} while (cont < getNumeroLetras());
+		}
+		cont++;
+		}while (cont < getNumeroLetras());
+		System.out.println("Palavra "+getNomeForca());
 		if (vitoria == gameForca.getNumeroLetras()) {
+			vitoria=0;
 			gameForca.setOver(false);
 			gameForca.setVitoriA(true);
-			gameForca.main(null);
 		} else if (validaButton == false) {
 			imgNum++;
 			imgControl.imgControl(imgNum);
 			gameForca.setBt(false);
 			if (imgNum == 6) {
+				vitoria=0;
 				cont = 0;
 				validaButton = false;
 				imgNum = 0;
 				gameForca.gameOver(true);
-				gameForca.main(null);
+				gameForca.setVitoriA(false);
 			}
 		} else if (validaButton == true) {
 			gameForca.setBt(true);
 		}
 	}
 	public static void geraPalavra() {
-
 		nomeRandom palavra = nomeRandom.getRandom();
 		nomeForca = String.valueOf(palavra);
 		int contador = 0;

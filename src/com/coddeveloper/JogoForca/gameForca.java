@@ -1,4 +1,5 @@
 package com.coddeveloper.JogoForca;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -6,6 +7,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -26,6 +28,7 @@ import javax.swing.event.AncestorListener;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 public class gameForca extends JFrame {
+	
 	public static boolean bt;
 	public JPanel contentPane;
 	private static JLabel[] label;
@@ -42,26 +45,18 @@ public class gameForca extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				if (over == true) {
+				if (over == true|vitoriA==true) {
+					System.out.println("dentro função repetição IF game over true. vitoria true...");
 					gameForca.limpar();
-				} else if (vitoriA = true) {
-					gameForca.limpar();
+					System.out.println("Voltou do mentodo limpar estrut repetição if ");
 				}
-				TelaGameOver.main(null);
-				/*
-				 * try { TelaGameOver iniciar = new TelaGameOver();
-				 * iniciar.main(null); } catch (Exception e) {
-				 * e.printStackTrace(); }
-				 */
-			}
-		});}
-	public void winodwsIN(WindowEvent ev) {
-		compNome.geraPalavra();
-		geraLetrasPN_Palavra();
-		gameForca();
-	}
+			gameForca init = new gameForca();
+			init.winodwsIN(null);
+		}});}
 	public void gameForca() {
-		setLocationRelativeTo(null);
+		System.out.println("Confirmando GameOver = "+isOver());
+		System.out.println("Confirmando Vitorai = "+isVitoriA());
+		this.setLocationRelativeTo(null);
 		setVisible(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(gameForca.class.getResource("/img/06.png")));
 		setTitle("JOGO -------- DA -------- FORCA");
@@ -69,25 +64,36 @@ public class gameForca extends JFrame {
 		setBounds(100, 100, 947, 606);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(7, 7, 7, 7));
+		//contentPane.setLocale(null);
+		contentPane.repaint();
 		setContentPane(contentPane);
+		repaint();
 		JButton btnA = new JButton("A");
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					compNome.comparaPalavra(btnA.getText());
 				} catch (Exception e) {
-
-					e.printStackTrace();
-				}
-				btnA.setEnabled(false);
-
+					e.printStackTrace();}
+					btnA.setEnabled(false);
 				if (bt == false) {
 					btnA.setBackground(Color.RED);
-				} else if (bt == true) {
-					btnA.setBackground(Color.GREEN);
 				}
-			}
-		});
+				if (bt == true) {
+					btnA.setBackground(Color.GREEN);					
+				}
+				if(over==true&&vitoriA==false){
+						TelaGameOver.setGameOveR(true);
+						gameForca.limpar();	
+						dispose();
+						TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+						TelaGameOver.setGanhoU(true);
+						dispose();
+						gameForca.limpar();					
+						TelaControle.main(null);	
+				}
+			}});
 		btnA.setForeground(new Color(148, 0, 211));
 		JButton btnB = new JButton("B");
 		btnB.addActionListener(new ActionListener() {
@@ -95,19 +101,30 @@ public class gameForca extends JFrame {
 				try {
 					compNome.comparaPalavra(btnB.getText());
 				} catch (Exception e) {
-
 					e.printStackTrace();
 				}
 				btnB.setEnabled(false);
-
 				if (bt == false) {
 					btnB.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnB.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnB.setForeground(new Color(148, 0, 211));
+		btnB.setFont(new Font("Dialog", Font.BOLD, 11));
+
 		JButton btnC = new JButton("C");
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -118,15 +135,26 @@ public class gameForca extends JFrame {
 					e.printStackTrace();
 				}
 				btnC.setEnabled(false);
-
 				if (bt == false) {
 					btnC.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnC.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnC.setForeground(new Color(148, 0, 211));
+		btnC.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnD = new JButton("D");
 		btnD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,15 +168,26 @@ public class gameForca extends JFrame {
 
 				if (bt == false) {
 					btnD.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnD.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnD.setForeground(new Color(148, 0, 211));
 		btnD.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnE = new JButton("E");
-		btnE.setForeground(new Color(148, 0, 211));
+		
 		btnE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -158,14 +197,25 @@ public class gameForca extends JFrame {
 					e.printStackTrace();
 				}
 				btnE.setEnabled(false);
-
 				if (bt == false) {
 					btnE.setBackground(Color.RED);
-				} else if (bt == true) {
+				}if (bt == true) {
 					btnE.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
+		btnE.setForeground(new Color(148, 0, 211));
+		btnE.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnF = new JButton("F");
 		btnF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,15 +226,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnF.setEnabled(false);
-
 				if (bt == false) {
 					btnF.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnF.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnF.setForeground(new Color(148, 0, 211));
+		btnF.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnG = new JButton("G");
 		btnG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,14 +256,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnG.setEnabled(false);
-
 				if (bt == false) {
 					btnG.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnG.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnG.setForeground(new Color(148, 0, 211));
 		btnG.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnH = new JButton("H");
@@ -215,14 +286,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnH.setEnabled(false);
-
 				if (bt == false) {
 					btnH.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnH.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnH.setForeground(new Color(148, 0, 211));
 		btnH.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnI = new JButton("I");
@@ -235,14 +316,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnI.setEnabled(false);
-
 				if (bt == false) {
 					btnI.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnI.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnI.setForeground(new Color(148, 0, 211));
 		btnI.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnJ = new JButton("J");
@@ -255,15 +346,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnJ.setEnabled(false);
-
 				if (bt == false) {
 					btnJ.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnJ.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnJ.setForeground(new Color(148, 0, 211));
+		btnJ.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnK = new JButton("K");
 		btnK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -274,15 +376,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnK.setEnabled(false);
-
 				if (bt == false) {
 					btnK.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnK.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnK.setForeground(new Color(148, 0, 211));
+		btnK.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnL = new JButton("L");
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -293,15 +406,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnL.setEnabled(false);
-
 				if (bt == false) {
 					btnL.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnL.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnL.setForeground(new Color(148, 0, 211));
+		btnL.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnM = new JButton("M");
 		btnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -312,14 +436,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnM.setEnabled(false);
-
 				if (bt == false) {
 					btnM.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnM.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnM.setForeground(new Color(148, 0, 211));
 		btnM.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnn = new JButton("N");
@@ -332,14 +466,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnn.setEnabled(false);
-
 				if (bt == false) {
 					btnn.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnn.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnn.setForeground(new Color(148, 0, 211));
 		btnn.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnO = new JButton("O");
@@ -352,14 +496,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnO.setEnabled(false);
-
 				if (bt == false) {
 					btnO.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnO.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnO.setForeground(new Color(148, 0, 211));
 		btnO.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnP = new JButton("P");
@@ -372,15 +526,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnP.setEnabled(false);
-
 				if (bt == false) {
 					btnP.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnP.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnP.setForeground(new Color(148, 0, 211));
+		btnP.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnQ = new JButton("Q");
 		btnQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -391,14 +556,24 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnQ.setEnabled(false);
-
 				if (bt == false) {
 					btnQ.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnQ.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnQ.setForeground(new Color(148, 0, 211));
 		btnQ.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnR = new JButton("R");
@@ -411,15 +586,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnR.setEnabled(false);
-
 				if (bt == false) {
 					btnR.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnR.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnR.setForeground(new Color(148, 0, 211));
+		btnR.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnS = new JButton("S");
 		btnS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -430,15 +616,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnS.setEnabled(false);
-
 				if (bt == false) {
 					btnS.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnS.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnS.setForeground(new Color(148, 0, 211));
+		btnS.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnT = new JButton("T");
 		btnT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -449,15 +646,26 @@ public class gameForca extends JFrame {
 					e1.printStackTrace();
 				}
 				btnT.setEnabled(false);
-
 				if (bt == false) {
 					btnT.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnT.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnT.setForeground(new Color(148, 0, 211));
+		btnT.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnU = new JButton("U");
 		btnU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -469,11 +677,22 @@ public class gameForca extends JFrame {
 				btnU.setEnabled(false);
 				if (bt == false) {
 					btnU.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnU.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnU.setForeground(new Color(148, 0, 211));
 		btnU.setFont(new Font("Dialog", Font.BOLD, 11));
 		JButton btnV = new JButton("V");
@@ -487,12 +706,24 @@ public class gameForca extends JFrame {
 				btnV.setEnabled(false);
 				if (bt == false) {
 					btnV.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnV.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnV.setForeground(new Color(148, 0, 211));
+		btnV.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnW = new JButton("W");
 		btnW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -504,11 +735,22 @@ public class gameForca extends JFrame {
 				btnW.setEnabled(false);
 				if (bt == false) {
 					btnW.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnW.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnW.setForeground(new Color(148, 0, 211));
 		btnW.setFont(new Font("Dialog", Font.BOLD, 9));
 		JButton btnX = new JButton("X");
@@ -522,12 +764,24 @@ public class gameForca extends JFrame {
 				btnX.setEnabled(false);
 				if (bt == false) {
 					btnX.setBackground(Color.RED);
-				} else if (bt == true) {
+				}
+				if (bt == true) {
 					btnX.setBackground(Color.GREEN);
 				}
+				if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnX.setForeground(new Color(148, 0, 211));
+		btnX.setFont(new Font("Dialog", Font.BOLD, 10));
 		JButton btnY = new JButton("Y");
 		btnY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -538,13 +792,24 @@ public class gameForca extends JFrame {
 				}
 				btnY.setEnabled(false);
 				if (bt == false) {
-					btnY.setBackground(Color.RED);
-				} else if (bt == true) {
-					btnY.setBackground(Color.GREEN);
+					btnA.setBackground(Color.RED);
 				}
+				if (bt == true) {
+					btnA.setBackground(Color.GREEN);
+				}if(over==true&&vitoriA==false){
+					TelaGameOver.setGameOveR(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
+				}else if(over==false&&vitoriA==true){
+					TelaGameOver.setGanhoU(true);
+					dispose();
+					gameForca.limpar();					
+					TelaControle.main(null);	
 			}
-		});
+			}});
 		btnY.setForeground(new Color(148, 0, 211));
+		btnY.setFont(new Font("Dialog", Font.BOLD, 10));
 		pn_Palavra.setBorder(new LineBorder(new Color(0, 128, 0), 2));
 		pn_Palavra.setForeground(new Color(51, 51, 51));
 		JLabel lblNewLabel = new JLabel("ADIVINHE A PALAVRA:");
@@ -569,8 +834,7 @@ public class gameForca extends JFrame {
 							lbl_Relogio.setText(h + ":" + m + ":" + s + " " + am_pm);
 						}
 					}
-				}.start();
-			}
+				}.start();}
 			@Override public void ancestorMoved(AncestorEvent arg0) {}
 			@Override public void ancestorRemoved(AncestorEvent arg0) {}
 		});
@@ -718,8 +982,12 @@ public class gameForca extends JFrame {
 						.addComponent(lbl_ico, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE).addContainerGap()));
 		pn_Forca.setLayout(gl_pn_Forca);
 		panel.setLayout(gl_panel);
-		contentPane.setLayout(gl_contentPane);
-
+		contentPane.setLayout(gl_contentPane);	
+	}
+	public void winodwsIN(WindowEvent ev) {
+		compNome.geraPalavra();
+		geraLetrasPN_Palavra();
+		gameForca();
 	}
 	private static void limpar() {
 		int cont = getNumeroLetras();
@@ -727,8 +995,7 @@ public class gameForca extends JFrame {
 			for (int i = 0; i < label.length; i++) {
 				label[i].setText(null);
 				cont--;
-			}
-		}
+			}}
 		setNumeroLetras(cont);
 		pn_Palavra.repaint();
 		pn_Palavra.revalidate();
@@ -747,8 +1014,7 @@ public class gameForca extends JFrame {
 			cont++;
 			if (cont >= getNumeroLetras()) {
 				lbl_dica.setText("Dica esta Palavra Contem " + cont + " Letras!! Boa Sorte...");
-			}
-		}
+			}}
 	}
 	public static boolean isBt() {
 		return bt;
