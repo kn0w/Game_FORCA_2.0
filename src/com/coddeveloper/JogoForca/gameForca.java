@@ -56,7 +56,7 @@ public class gameForca extends JFrame {
 	public void gameForca() {
 		System.out.println("Confirmando GameOver = "+isOver());
 		System.out.println("Confirmando Vitorai = "+isVitoriA());
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setVisible(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(gameForca.class.getResource("/img/06.png")));
 		setTitle("JOGO -------- DA -------- FORCA");
@@ -64,7 +64,7 @@ public class gameForca extends JFrame {
 		setBounds(100, 100, 947, 606);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(7, 7, 7, 7));
-		//contentPane.setLocale(null);
+		contentPane.setLocale(null);
 		contentPane.repaint();
 		setContentPane(contentPane);
 		repaint();
@@ -792,10 +792,10 @@ public class gameForca extends JFrame {
 				}
 				btnY.setEnabled(false);
 				if (bt == false) {
-					btnA.setBackground(Color.RED);
+					btnY.setBackground(Color.RED);
 				}
 				if (bt == true) {
-					btnA.setBackground(Color.GREEN);
+					btnY.setBackground(Color.GREEN);
 				}if(over==true&&vitoriA==false){
 					TelaGameOver.setGameOveR(true);
 					dispose();
@@ -1035,7 +1035,9 @@ public class gameForca extends JFrame {
 		label[num].setText(text);
 	}
 	public static String imG(String ox) throws Exception {
+		
 		lbl_ico.setIcon(new ImageIcon(gameForca.class.getResource(ox)));
+		
 		return ox;
 	}
 	public static boolean gameOver(boolean over) {
