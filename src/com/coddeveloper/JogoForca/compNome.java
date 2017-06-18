@@ -26,7 +26,7 @@ public class compNome extends gameForca {
 			imgNum++;
 			imgControl.imgControl(imgNum);
 			gameForca.setBt(false);
-			if (imgNum == 6) {
+			if (imgNum == 7) {
 				vitoria=0;
 				cont = 0;
 				validaButton = false;
