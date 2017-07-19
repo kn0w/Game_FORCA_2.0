@@ -1,5 +1,4 @@
 package com.coddeveloper.JogoForca;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -7,13 +6,13 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -806,8 +805,7 @@ public class gameForca extends JFrame {
 					dispose();
 					gameForca.limpar();					
 					TelaControle.main(null);	
-			}
-			}});
+			}}});
 		btnY.setForeground(new Color(148, 0, 211));
 		btnY.setFont(new Font("Dialog", Font.BOLD, 10));
 		pn_Palavra.setBorder(new LineBorder(new Color(0, 128, 0), 2));
@@ -991,15 +989,16 @@ public class gameForca extends JFrame {
 	}
 	private static void limpar() {
 		int cont = getNumeroLetras();
-		if (getNumeroLetras() != 0) {
-			for (int i = 0; i < label.length; i++) {
-				label[i].setText(null);
-				cont--;
-			}}
+		if (getNumeroLetras() > 0) {
+			for (int i = 0; i < getNumeroLetras(); i++) {
+				pn_Palavra.remove(label[i]);;
+				cont--; }}
+
+		System.out.println("Contador "+cont);
 		setNumeroLetras(cont);
 		pn_Palavra.repaint();
 		pn_Palavra.revalidate();
-		lbl_ico.setIcon(null);
+		lbl_ico.setIcon(Icon.class.cast(null));
 	}
 	public static void geraLetrasPN_Palavra() {
 		int cont = 0;
@@ -1035,9 +1034,7 @@ public class gameForca extends JFrame {
 		label[num].setText(text);
 	}
 	public static String imG(String ox) throws Exception {
-		
 		lbl_ico.setIcon(new ImageIcon(gameForca.class.getResource(ox)));
-		
 		return ox;
 	}
 	public static boolean gameOver(boolean over) {

@@ -20,17 +20,21 @@ public class compNome extends gameForca {
 		System.out.println("Palavra "+getNomeForca());
 		if (vitoria == gameForca.getNumeroLetras()) {
 			vitoria=0;
+			cont = 0;
+			imgNum = 0;
 			gameForca.setOver(false);
 			gameForca.setVitoriA(true);
 		} else if (validaButton == false) {
+			System.out.println("Game Over Iniciando limpeza");
 			imgNum++;
 			imgControl.imgControl(imgNum);
 			gameForca.setBt(false);
 			if (imgNum == 7) {
+				System.out.println("coferindo liompeza com imagem a "+imgNum);
 				vitoria=0;
 				cont = 0;
-				validaButton = false;
 				imgNum = 0;
+				validaButton = false;
 				gameForca.gameOver(true);
 				gameForca.setVitoriA(false);
 			}
